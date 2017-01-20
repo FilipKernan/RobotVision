@@ -10,7 +10,7 @@ logging.basicConfig(level=logging.DEBUG)
 
 def capture():
     camera = PiCamera()
-    cap = cv2.VideoCapture(camera)
+    cap = cv2.VideoCapture(0)
     while(True):
         # Capture frame-by-frame
         frame = cap.read()
@@ -53,7 +53,7 @@ def setup():
     os.system("worknon cv")
 
 if __name__ == "__main__":
-    print "Hello World"
+    print("Hello World")
     print(cv2.__version__)
     capture()
 
