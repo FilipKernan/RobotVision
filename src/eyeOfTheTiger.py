@@ -20,15 +20,15 @@ def capture():
         #
         #
         
-        hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+        #hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
         
-        lowerGreen = n.array([45,54,55])
+        #lowerGreen = n.array([45,54,55])
         
-        higherGreen = n.array([75,255,255])
+        #higherGreen = n.array([75,255,255])
         
-        mask = cv2.inRange(hsv,lowerGreen,higherGreen)
+        #mask = cv2.inRange(hsv,lowerGreen,higherGreen)
         
-        res = cv2.bitwise_and(frame,frame, mask = mask) 
+        #res = cv2.bitwise_and(frame,frame, mask = mask) 
         
         #temp use gyro for angle of attack
         #IDK for angle of elevation
