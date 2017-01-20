@@ -53,7 +53,10 @@ def capture():
         #print(res.centroid.x)
         #print(res.centroid.y)
         
-        if cv2.waitKey(1) & 0xFF == ord('q'):
+         # capture a keypress
+        key = cv2.waitKey(20) & 0xFF
+        # escape key
+        if key == 27:
             break
     cap.release()
     cv2.destroyAllWindows()
