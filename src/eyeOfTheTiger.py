@@ -13,7 +13,7 @@ def capture():
     cap = cv2.VideoCapture(0)
     while(True):
         # Capture frame-by-frame
-        frame = cap.read()
+        ret, frame = cap.read()
         
         
         #operations on frame
