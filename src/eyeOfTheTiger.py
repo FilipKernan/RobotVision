@@ -12,8 +12,8 @@ def capture():
     camera = PiCamera()
     cap = cv2.VideoCapture(0)
         # adjust camera settings
-    cap.set(cv2.CAP_PROP_FRAME_WIDTH, FRAME_X)
-    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, FRAME_Y)
+    cap.set(cv2.CAP_PROP_FRAME_WIDTH, 3280)
+    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 2464)
     # cap.set(cv2.CAP_PROP_FPS,30)
     cap.set(cv2.CAP_PROP_EXPOSURE, -8.0)
     while(True):
