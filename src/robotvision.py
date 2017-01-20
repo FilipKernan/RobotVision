@@ -3,14 +3,14 @@
 # and open the template in the editor.
 import numpy as n
 import cv2
-from picamera import PiCamera
+import picamera
 import os
 import logging
 logging.basicConfig(level=logging.DEBUG)
 
 def capture():
-    camera = PiCamera()
-    cap = cv2.VideoCapture(camera)
+    camera = picamera.PiCamera()
+    cap = cv2.VideoCapture(0)
     while(True):
         # Capture frame-by-frame
         frame = cap.read()
@@ -20,7 +20,7 @@ def capture():
         #
         #
         
-        hsv = cv2.cvtColor(frame, cv2.COLOR_BGR_HSV)
+        hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
         
         lowerGreen = n.array([45,54,55])
         
