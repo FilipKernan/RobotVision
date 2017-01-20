@@ -36,8 +36,8 @@ def capture():
         
         # Display the resulting frame 
         cv2.imshow('frame', frame)
-        cv2.imshow('mask', mask)
-        cv2.imshow('res', res)
+        #cv2.imshow('mask', mask)
+        #cv2.imshow('res', res)
         print(res.centroid.x)
         print(res.centroid.y)
         
@@ -48,11 +48,12 @@ def capture():
     #use find contures and use area
 
 def setup():
+    os.system("cd /")
     os.system("source ~/.profile")
     os.system("worknon cv")
 
 if __name__ == "__main__":
-    print("Hello World")
+    print "Hello World"
     print(cv2.__version__)
     capture()
 
