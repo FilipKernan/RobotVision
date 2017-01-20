@@ -20,7 +20,7 @@ def capture():
         #
         #
         
-        hsv = cv2.cvtColor(frame, cv2.COLOR_BGR_HSV)
+        hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
         
         lowerGreen = n.array([45,54,55])
         
