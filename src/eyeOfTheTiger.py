@@ -6,11 +6,13 @@ import cv2
 from picamera import PiCamera
 import os
 import logging
+import time
 logging.basicConfig(level=logging.DEBUG)
 
 def capture():
     camera = PiCamera()
     cap = cv2.VideoCapture(0)
+    time.sleep(2)
     while(True):
         # Capture frame-by-frame
         ret, frame = cap.read()
@@ -20,26 +22,29 @@ def capture():
         #
         #
         
-        hsv = cv2.cvtColor(frame, cv2.COLOR_RGB2HSV)
+
+        #hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+
         
-        lowerGreen = n.array([45,54,55])
+        #lowerGreen = n.array([45,54,55])
         
-        higherGreen = n.array([75,255,255])
+        #higherGreen = n.array([75,255,255])
         
-        mask = cv2.inRange(hsv,lowerGreen,higherGreen)
+        #mask = cv2.inRange(hsv,lowerGreen,higherGreen)
         
-        res = cv2.bitwise_and(frame,frame, mask = mask) 
+        #res = cv2.bitwise_and(frame,frame, mask = mask) 
         
         #temp use gyro for angle of attack
         #IDK for angle of elevation
         
         
         # Display the resulting frame 
-        cv2.imshow('frame', frame)
+        if ret == True:
+		cv2.imshow('frame', frame)
         #cv2.imshow('mask', mask)
         #cv2.imshow('res', res)
-        print(res.centroid.x)
-        print(res.centroid.y)
+        #print(res.centroid.x)
+        #print(res.centroid.y)
         
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
