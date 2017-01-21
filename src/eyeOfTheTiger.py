@@ -11,9 +11,9 @@ logging.basicConfig(level=logging.DEBUG)
 
 def capture():
     camera = PiCamera()
-    cap = cv2.VideoCapture(0)
-    time.sleep(2)
-    # adjust camera settings
+    cap = cv2.VideoCapture(PiCamera)
+        # adjust camera settings
+
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, 3280)
     cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 2464)
 
