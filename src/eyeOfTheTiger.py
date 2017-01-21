@@ -16,13 +16,13 @@ def capture():
     time.sleep(2)
     
 
-
+    camera.capture(stream, format='png')
     
     # adjust camera settings
     
     while(True):
         # Capture frame-by-frame
-        camera.capture(stream, format='png')
+        
     
         data = np.fromstring(stream.getvalue(), dtype=np.uint8)
 
