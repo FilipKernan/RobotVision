@@ -16,7 +16,7 @@ def capture():
     stream = io.BytesIO() 
 
     camera = picamera.PiCamera()
-    camera.resolution = (640, 480)
+    
     camera.start_preview()
 
     
