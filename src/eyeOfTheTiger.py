@@ -37,11 +37,11 @@ def capture():
         
         hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
         
-        lowerGreen = np.array([45,54,55])
+        lowerGreen = np.array([50,150,55])
         
         higherGreen = np.array([75,255,255])
         
-        mask = cv2.inRange(hsv,lowerGreen,higherGreen)
+        mask = cv2.inRange(hsv, lowerGreen, higherGreen)
         
         #res = cv2.bitwise_and(frame,frame, mask = mask) 
         
