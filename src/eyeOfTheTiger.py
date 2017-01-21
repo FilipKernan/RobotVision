@@ -35,13 +35,13 @@ def capture():
         #
         #
         
-        #hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+        hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
         
-        #lowerGreen = n.array([45,54,55])
+        lowerGreen = n.array([45,54,55])
         
-        #higherGreen = n.array([75,255,255])
+        higherGreen = n.array([75,255,255])
         
-        #mask = cv2.inRange(hsv,lowerGreen,higherGreen)
+        mask = cv2.inRange(hsv,lowerGreen,higherGreen)
         
         #res = cv2.bitwise_and(frame,frame, mask = mask) 
         
@@ -50,8 +50,8 @@ def capture():
         
         
         # Display the resulting frame 
-        cv2.imshow('frame', frame)
-        #cv2.imshow('mask', mask)
+        #cv2.imshow('frame', frame)
+        cv2.imshow('mask', mask)
         #cv2.imshow('res', res)
         #print(res.centroid.x)
         #print(res.centroid.y)
