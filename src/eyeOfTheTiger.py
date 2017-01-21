@@ -11,6 +11,7 @@ logging.basicConfig(level=logging.DEBUG)
 
 def capture():
     stream = io.BytesIO() 
+    camera.resolution = (640, 480)
     camera = picamera.PiCamera()
     camera.start_preview()
 
