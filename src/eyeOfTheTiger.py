@@ -27,7 +27,7 @@ def capture():
 
     while(True):
         # Capture frame-by-frame
-        camera.capture(stream, format='mp4')
+        camera.capture(stream, format='png')
     
         data = np.fromstring(stream.getvalue(), dtype=np.uint8)
 
