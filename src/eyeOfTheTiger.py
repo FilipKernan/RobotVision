@@ -26,7 +26,7 @@ def capture():
     
         data = np.fromstring(stream.getvalue(), dtype=np.uint8)
 
-       ''' ret,''' 
+       # ret,
        frame = cv2.imdecode(data, 1)
         
         
