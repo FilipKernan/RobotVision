@@ -3,7 +3,7 @@
 # and open the template in the editor.
 import numpy as np
 import cv2
-from picamera 
+import picamera 
 import os
 import io
 import logging
