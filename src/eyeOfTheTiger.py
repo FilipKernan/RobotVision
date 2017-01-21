@@ -13,11 +13,11 @@ def capture():
     stream = io.BytesIO() 
     camera = picamera.PiCamera()
     camera.start_preview()
-    time.sleep(2)
+
     
 
     camera.capture(stream, format='png')
-    
+    time.sleep(2)
     # adjust camera settings
     
     while(True):
