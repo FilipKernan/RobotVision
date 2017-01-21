@@ -1,24 +1,32 @@
 # To change this license header, choose License Headers in Project Properties.
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
-import numpy as n
+import numpy as np
 import cv2
-from picamera import PiCamera
+from picamera 
 import os
+import io
 import logging
 logging.basicConfig(level=logging.DEBUG)
 
 def capture():
-    camera = PiCamera()
-    cap = cv2.VideoCapture(PiCamera)
-        # adjust camera settings
-    cap.set(cv2.CAP_PROP_FRAME_WIDTH, 3280)
-    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 2464)
-    # cap.set(cv2.CAP_PROP_FPS,30)
-    cap.set(cv2.CAP_PROP_EXPOSURE, -8.0)
+    stream = io.BytesIO 
+    camera = picamera.PiCamera()
+    camera.start_preview()
+    time.sleep(2)
+    
+
+
+    
+    # adjust camera settings
+    
     while(True):
         # Capture frame-by-frame
-        ret, frame = cap.read()
+        camera.capture(stream, format='jpeg')
+    
+        data = np.fromstring(stream.getvalue(), dtype=np.uint8)
+
+        frame = cv2.imdecode(data, 1)
         
         
         #operations on frame
@@ -63,5 +71,6 @@ def setup():
 if __name__ == "__main__":
     print("Hello World")
     print(cv2.__version__)
+    setup()
     capture()
 
