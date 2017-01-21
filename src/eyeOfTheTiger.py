@@ -16,7 +16,7 @@ def capture():
 
     
 
-    camera.capture(stream, format='png')
+    camera.capture(stream, format='jpeg')
     time.sleep(2)
     # adjust camera settings
     
