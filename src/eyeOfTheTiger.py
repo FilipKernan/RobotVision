@@ -10,7 +10,7 @@ import logging
 logging.basicConfig(level=logging.DEBUG)
 
 def capture():
-    stream = io.BytesIO 
+    stream = io.BytesIO() 
     camera = picamera.PiCamera()
     camera.start_preview()
     time.sleep(2)
