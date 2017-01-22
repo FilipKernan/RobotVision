@@ -45,9 +45,10 @@ def capture():
         #
         #
         
-        hsv = cv2.cvtColor(frame, cv2.COLOR_RGB2HSV)
-       
-       
+
+        hsv = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
+        
+     
         
         mask = cv2.inRange(hsv, LOWER_BLUE, UPPER_BLUE)
         
