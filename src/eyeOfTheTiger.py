@@ -12,8 +12,8 @@ logging.basicConfig(level=logging.DEBUG)
 
 
 
-LOWER_BLUE = np.array([110,50,50])
-UPPER_BLUE = np.array([130,255,255])
+LOWER_BLUE = np.array([110,50,50], dtype=np.uint8)
+UPPER_BLUE = np.array([130,255,255], dtype=np.uint8)
 
 
 def capture():
