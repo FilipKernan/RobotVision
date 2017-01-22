@@ -10,6 +10,12 @@ import logging
 import time
 logging.basicConfig(level=logging.DEBUG)
 
+
+
+LOWER_BLUE = np.array([110,50,50])
+UPPER_BLUE = np.array([130,255,255])
+
+
 def capture():
 
 
@@ -31,7 +37,7 @@ def capture():
         
     
         data = np.fromstring(stream.getvalue(), dtype=np.uint8)
-        ret = True
+        
         frame = cv2.imdecode(data, 1)
         
         
@@ -42,11 +48,9 @@ def capture():
 
         hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
         
-        lowerGreen = np.array([100,150,55])
+       
         
-        higherGreen = np.array([101,152,59])
-        
-        mask = cv2.inRange(hsv, lowerGreen, higherGreen)
+        mask = cv2.inRange(hsv, LOWER_BLUE, UPPER_BLUE)
         
         #res = cv2.bitwise_and(frame,frame, mask = mask) 
         
@@ -67,7 +71,7 @@ def capture():
         # escape key
         if key == 27:
             break
-    camera.release()
+    #camera.release()
     cv2.destroyAllWindows()
     #use find contures and use area
 

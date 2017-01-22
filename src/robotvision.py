@@ -3,13 +3,21 @@
 # and open the template in the editor.
 import numpy as n
 import cv2
+<<<<<<< HEAD
 import picamera
+=======
+#from picamera import PiCamera
+>>>>>>> 3643d91d10344968b0a0fc11827737f6faf43c8d
 import os
 import logging
 logging.basicConfig(level=logging.DEBUG)
 
 def capture():
+<<<<<<< HEAD
     camera = picamera.PiCamera()
+=======
+    #camera = PiCamera()
+>>>>>>> 3643d91d10344968b0a0fc11827737f6faf43c8d
     cap = cv2.VideoCapture(0)
     while(True):
         # Capture frame-by-frame
@@ -40,8 +48,8 @@ def capture():
         cv2.imshow('res', res)
         print(res.centroid.x)
         print(res.centroid.y)
-        
-        if cv2.waitKey(1) & 0xFF == ord('q'):
+        cv2.waitKey(20) & 0xFF == ord('q')
+        if key == 27:
             break
     cap.release()
     cv2.destroyAllWindows()
