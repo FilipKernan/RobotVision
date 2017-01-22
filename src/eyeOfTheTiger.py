@@ -54,8 +54,8 @@ def capture():
         
         
         # Display the resulting frame 
-        #cv2.imshow('frame', frame)
-        cv2.imshow('mask', hsv)
+        cv2.imshow('frame', frame)
+        #cv2.imshow('mask', hsv)
         #cv2.imshow('res', res)
         #print(res.centroid.x)
         #print(res.centroid.y)
