@@ -41,7 +41,7 @@ def capture():
         #
         #
         
-        hsv = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
+        hsv = cv2.cvtColor(frame, cv2.CV_RGB2GRAY)
         
        
         
