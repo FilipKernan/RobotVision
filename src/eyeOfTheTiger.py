@@ -55,7 +55,7 @@ def capture():
         
         
         # Display the resulting frame 
-        #cv2.imshow('frame', frame)
+        cv2.imshow('frame', frame)
         cv2.imshow('mask', mask)
 
         #cv2.imshow('res', res)
@@ -67,7 +67,7 @@ def capture():
         # escape key
         if key == 27:
             break
-    cap.release()
+    camera.release()
     cv2.destroyAllWindows()
     #use find contures and use area
 
