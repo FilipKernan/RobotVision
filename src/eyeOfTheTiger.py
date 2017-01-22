@@ -45,7 +45,7 @@ def capture():
         
        
         
-        mask = cv2.inRange(hsv, LOWER_BLUE, UPPER_BLUE)
+        #mask = cv2.inRange(hsv, LOWER_BLUE, UPPER_BLUE)
         
         #res = cv2.bitwise_and(frame,frame, mask = mask) 
         
