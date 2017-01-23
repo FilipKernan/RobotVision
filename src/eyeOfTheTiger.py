@@ -26,7 +26,7 @@ def capture():
     cap1 = cv2.VideoCapture(0)
     
 
-    camera.capture(stream, format='brg')
+    camera.capture(stream, format='bgr')
     time.sleep(2)
     # adjust camera settings
     
