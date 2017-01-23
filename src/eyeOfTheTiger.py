@@ -41,7 +41,7 @@ def capture():
         #
         #
         
-        hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV_FULL)
+        hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         
        
         
@@ -54,7 +54,7 @@ def capture():
         
         
         # Display the resulting frame 
-        cv2.imshow('frame', frame)
+        cv2.imshow('frame', hsv)
         #cv2.imshow('mask', hsv)
         #cv2.imshow('res', res)
         #print(res.centroid.x)
