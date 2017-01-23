@@ -15,9 +15,8 @@ import time
 logging.basicConfig(level=logging.DEBUG)
 
 
-
-LOWER_BLUE = np.array([110,50,50], dtype=np.uint8)
-UPPER_BLUE = np.array([130,255,255], dtype=np.uint8)
+LOWER_GREEN = np.array([0, 0, 0])
+UPPER_GREEN = np.array([1, 2, 256])
 
 
 def capture():
@@ -50,7 +49,7 @@ def capture():
         
      
         
-        mask = cv2.inRange(hsv, LOWER_BLUE, UPPER_BLUE)
+        mask = cv2.inRange(hsv, LOWER_GREEN, UPPER_GREEN)
         
         res = cv2.bitwise_and(frame,frame, mask = mask) 
         
@@ -59,7 +58,10 @@ def capture():
         
         
         # Display the resulting frame 
+
         cv2.imshow('frame', frame)
+
+        cv2.imshow('hsv', hsv)
         cv2.imshow('mask', mask)
         cv2.imshow('res', res)
         #print(res.centroid.x)
