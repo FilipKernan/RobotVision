@@ -21,18 +21,6 @@ UPPER_BLUE = np.array([130,255,255], dtype=np.uint8)
 
 
 def capture():
-<<<<<<< HEAD
-
-
-    stream = io.BytesIO() 
-
-    camera = picamera.PiCamera()
-=======
-    #stream = io.BytesIO() 
-    
-    #camera = picamera.PiCamera()
->>>>>>> 000eb37aa973d94bc63ad4224327d5bc9f81c98b
-    
     #camera.start_preview()
     cap1 = cv2.VideoCapture(0)
     
@@ -45,7 +33,7 @@ def capture():
     while(True):
         # Capture frame-by-frame
         
-        _, frame1 = cap1.read()
+        _, frame = cap1.read()
     
         #data = np.fromstring(stream.getvalue(), dtype=np.uint8)
         
@@ -57,7 +45,7 @@ def capture():
         #
         
 
-        hsv = cv2.cvtColor(frame1, cv2.COLOR_BGR2HSV_FULL)
+        hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV_FULL)
 
         
      
@@ -71,11 +59,11 @@ def capture():
         
         
         # Display the resulting frame 
-        cv2.imshow('frame', frame1)
-        cv2.imshow('mask', hsv)
+        cv2.imshow('frame', frame)
+        cv2.imshow('mask', mask)
         cv2.imshow('res', res)
-        print(res.centroid.x)
-        print(res.centroid.y)
+        #print(res.centroid.x)
+        #print(res.centroid.y)
         
          # capture a keypress
         key = cv2.waitKey(20) & 0xFF
