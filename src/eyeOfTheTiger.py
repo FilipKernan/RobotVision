@@ -18,15 +18,15 @@ UPPER_BLUE = np.array([130,255,255], dtype=np.uint8)
 
 
 def capture():
-    stream = io.BytesIO() 
+    #stream = io.BytesIO() 
     
-    camera = picamera.PiCamera()
+    #camera = picamera.PiCamera()
     
-    camera.start_preview()
+    #camera.start_preview()
     cap1 = cv2.VideoCapture(0)
     
 
-    camera.capture(stream, format='bgr')
+    #camera.capture(stream, format='bgr')
     time.sleep(2)
     # adjust camera settings
     
@@ -35,9 +35,9 @@ def capture():
         
         _, frame1 = cap1.read()
     
-        data = np.fromstring(stream.getvalue(), dtype=np.uint8)
+        #data = np.fromstring(stream.getvalue(), dtype=np.uint8)
         
-        frame = cv2.imdecode(data, 1)
+        #frame = cv2.imdecode(data, 1)
         
         
         #operations on frame
@@ -48,20 +48,20 @@ def capture():
         
        
         
-        #mask = cv2.inRange(hsv, LOWER_BLUE, UPPER_BLUE)
+        mask = cv2.inRange(hsv, LOWER_BLUE, UPPER_BLUE)
         
-        #res = cv2.bitwise_and(frame,frame, mask = mask) 
+        res = cv2.bitwise_and(frame,frame, mask = mask) 
         
         #temp use gyro for angle of attack
         #IDK for angle of elevation
         
         
         # Display the resulting frame 
-        cv2.imshow('frame', hsv)
-        #cv2.imshow('mask', hsv)
-        #cv2.imshow('res', res)
-        #print(res.centroid.x)
-        #print(res.centroid.y)
+        cv2.imshow('frame', frame1)
+        cv2.imshow('mask', hsv)
+        cv2.imshow('res', res)
+        print(res.centroid.x)
+        print(res.centroid.y)
         
          # capture a keypress
         key = cv2.waitKey(20) & 0xFF
