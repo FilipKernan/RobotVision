@@ -24,7 +24,7 @@ def capture():
     camera = picamera.PiCamera()
     
     camera.start_preview()
-
+    cap = cv2.VideoCapture(0)
     
 
     camera.capture(stream, format='jpeg')
@@ -35,6 +35,7 @@ def capture():
     while(True):
         # Capture frame-by-frame
         
+        _, frame1 = cap.read()
     
         data = np.fromstring(stream.getvalue(), dtype=np.uint8)
         
@@ -45,7 +46,9 @@ def capture():
         #
         #
         
-        hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV_FULL)
+
+        hsv = cv2.cvtColor(frame1, cv2.COLOR_BGR2HSV_FULL)
+
         
      
         
