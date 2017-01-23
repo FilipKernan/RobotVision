@@ -15,6 +15,27 @@ logging.basicConfig(level=logging.DEBUG)
 LOWER_GREEN = np.array([30, 20, 20])
 UPPER_GREEN = np.array([70, 230, 230])
 
+# Calibration box dimensions
+CAL_AREA = 1600
+CAL_SIZE = int(math.sqrt(CAL_AREA))
+CAL_UP = FRAME_CY + (CAL_SIZE / 2)
+CAL_LO = FRAME_CY - (CAL_SIZE / 2)
+CAL_R = FRAME_CX - (CAL_SIZE / 2)
+CAL_L = FRAME_CX + (CAL_SIZE / 2)
+CAL_UL = (CAL_L, CAL_UP)
+CAL_LR = (CAL_R, CAL_LO)
+
+
+def calibration_box(img):
+    """Return HSV color in the calibration box."""
+    cv2.rectangle(img, CAL_UL, CAL_LR, (0, 255, 0), thickness=1)
+    roi = img[CAL_LO:CAL_UP, CAL_R:CAL_L]
+    average_color_per_row = np.average(roi, axis=0)
+    average_color = np.average(average_color_per_row, axis=0)
+    average_color = np.uint8([[average_color]])
+    hsv = cv2.cvtColor(average_color, cv2.COLOR_BGR2HSV)
+    return hsv
+
 
 def capture():
     #stream = io.BytesIO() 
@@ -53,14 +74,15 @@ def capture():
         
         #temp use gyro for angle of attack
         #IDK for angle of elevation
-        
+        print(np.array_str(calibration_box(frame)))
+        cv2.imshow("NerdyCalibration", frame)
         
         # Display the resulting frame 
         cv2.imshow('frame', frame1)
-        cv2.imshow('mask', mask)
-        cv2.imshow('res', res)
-        print(res.centroid.x)
-        print(res.centroid.y)
+        #cv2.imshow('mask', mask)
+        #cv2.imshow('res', res)
+        #print(res.centroid.x)
+        #print(res.centroid.y)
         
          # capture a keypress
         key = cv2.waitKey(20) & 0xFF
