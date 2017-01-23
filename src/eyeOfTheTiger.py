@@ -7,7 +7,8 @@ import picamera
 import os
 import io
 import logging
-from test.test_buffer import cap
+
+
 logging.basicConfig(level=logging.DEBUG)
 
 
@@ -22,17 +23,17 @@ def capture():
     camera = picamera.PiCamera()
     
     camera.start_preview()
-    cap = cv2.VideoCapture(0)
+    cap1 = cv2.VideoCapture(0)
     
 
-    camera.capture(stream, format='jpeg')
+    camera.capture(stream, format='brg')
     time.sleep(2)
     # adjust camera settings
     
     while(True):
         # Capture frame-by-frame
         
-        _, frame1 = cap.read()
+        _, frame1 = cap1.read()
     
         data = np.fromstring(stream.getvalue(), dtype=np.uint8)
         
