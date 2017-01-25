@@ -12,8 +12,8 @@ import logging
 logging.basicConfig(level=logging.DEBUG)
 
 
-LOWER_GREEN = np.array([30, 20, 20])
-UPPER_GREEN = np.array([70, 230, 230])
+LOWER_GREEN = np.array([50, 130, 200])
+UPPER_GREEN = np.array([100, 220, 265])
 
 # Calibration box dimensions
 CAL_AREA = 1600
@@ -76,7 +76,7 @@ def capture():
         #IDK for angle of elevation
         print(np.array_str(calibration_box(frame)))
         cv2.imshow("NerdyCalibration", frame)
-        
+        ret,thresh = cv2.threshold(mask,50,130,200)
         contours,hierarchy = cv2.findContours(mask, 1, 2)
         cnt = contours[0]
         M = cv2.moments(cnt)
