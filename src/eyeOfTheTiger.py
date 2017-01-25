@@ -18,9 +18,9 @@ logging.basicConfig(level=logging.DEBUG)
 LOWER_GREEN = np.array([50, 130, 200])
 UPPER_GREEN = np.array([100, 220, 265])
 
+
 FRAME_CX = 1280/2
 FRAME_CY = 720/2
-
 # Calibration box dimensions
 CAL_AREA = 1600
 CAL_SIZE = int(math.sqrt(CAL_AREA))
@@ -77,33 +77,36 @@ def capture():
         
         res = cv2.bitwise_and(frame,frame, mask = mask) 
 
-        cont = cv2.findContours(mask, 1,2)
-        cnt = cont[0]
-        rect = cv2.minAreaRect(cnt)
-        box = cv2.boxPoints(rect)
-        box = np.int0(box)
-        cv2.drawContours(res, [box],0,(0,0,255),2)
+      
         
         #temp use gyro for angle of attack
         #IDK for angle of elevation
         print(np.array_str(calibration_box(frame)))
+
         #cv2.imshow("NerdyCalibration", frame)
-        
-        contours,hierarchy = cv2.findContours(mask, 1, 2)
+
+        ret,thresh = cv2.threshold(mask,50,130,200)
+
+        contours,_,_ = cv2.findContours(mask, 1, 2)
         cnt = contours[0]
         M = cv2.moments(cnt)
         print M
+
+        #cont = cv2.findContours(cnt, 1,2)
+        #cnt = cont[0]
+        #rect = cv2.minAreaRect(cnt)
+        #box = cv2.boxPoints(rect)
+        #box = np.int0(box)
+        #cv2.drawContours(res, [box],0,(0,0,255),2)
+
         
-        rect = cv2.minAreaRect(cnt)
-        box = cv2.boxPoints(rect)
-        box = np.int0(box)
-        cv2.drawContours(img,[box],0,(0,0,255),2)
+        hull = cv2.convexHull(mask)
         # Display the resulting frame 
 
         cv2.imshow('frame', frame)
         cv2.imshow('mask', mask)
         cv2.imshow('res', res)
-
+    
         #print(res.centroid.x)
         #print(res.centroid.y)
         
