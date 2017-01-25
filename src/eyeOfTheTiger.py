@@ -4,7 +4,7 @@
 import numpy as np
 import cv2
 import picamera 
-import os
+import subprocess
 import io
 import logging
 
@@ -55,6 +55,8 @@ def capture():
         
         _, frame1 = cap1.read()
     
+    
+        frame = cv2.GaussianBlur(frame, (11,11), 0)
         #data = np.fromstring(stream.getvalue(), dtype=np.uint8)
         
         #frame = cv2.imdecode(data, 1)
@@ -72,20 +74,22 @@ def capture():
         
         res = cv2.bitwise_and(frame,frame, mask = mask) 
         
+        _, cnts, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+        cv2.imshow('cnts', cnts)
         #temp use gyro for angle of attack
         #IDK for angle of elevation
-        print(np.array_str(calibration_box(frame)))
-        cv2.imshow("NerdyCalibration", frame)
-        ret,thresh = cv2.threshold(mask,50,130,200)
-        contours,hierarchy = cv2.findContours(mask, 1, 2)
-        cnt = contours[0]
-        M = cv2.moments(cnt)
-        print M
-        
-        rect = cv2.minAreaRect(cnt)
-        box = cv2.boxPoints(rect)
-        box = np.int0(box)
-        cv2.drawContours(img,[box],0,(0,0,255),2)
+#         print(np.array_str(calibration_box(frame)))
+#         cv2.imshow("NerdyCalibration", frame)
+#         ret,thresh = cv2.threshold(mask,50,130,200)
+#         contours,hierarchy = cv2.findContours(mask, 1, 2)
+#         cnt = contours[0]
+#         M = cv2.moments(cnt)
+#         print M
+#         
+#         rect = cv2.minAreaRect(cnt)
+#         box = cv2.boxPoints(rect)
+#         box = np.int0(box)
+#         cv2.drawContours(img,[box],0,(0,0,255),2)
         # Display the resulting frame 
         cv2.imshow('frame', frame1)
         #cv2.imshow('mask', mask)
@@ -103,9 +107,9 @@ def capture():
     #use find contures and use area
 
 def setup():
-    os.system("cd /")
-    os.system("source ~/.profile")
-    os.system("worknon cv")
+    subprocess.call(["cd", "/"])
+    subprocess.call(["source", "~/.profile"])
+    subprocess.call(["workon", "cv"])
 
 if __name__ == "__main__":
     print("Hello World")
