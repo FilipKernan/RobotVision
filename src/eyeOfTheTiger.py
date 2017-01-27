@@ -110,8 +110,8 @@ def capture():
         c = max(cnts, key = cv2.contourArea)
         goal = polygon(c)
         # Display the resulting frame 
-        cv2.drawContours(res, [cnt], 0, (0,0,255), 5)
-        print(len(cnt))
+        cv2.drawContours(res, [goal], 0, (0,0,255), 5)
+        
         cv2.imshow('frame', frame)
         cv2.imshow('mask', mask)
         cv2.imshow('res', res)
