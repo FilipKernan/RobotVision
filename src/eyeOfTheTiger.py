@@ -83,7 +83,7 @@ def capture():
 
       
         
-        cnts= cv2.findContours(mask.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)[0]
+        cnts= cv2.findContours(mask.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)[-2]
         #cv2.imshow('cnts', cnts)
         #temp use gyro for angle of attack
         #IDK for angle of elevation
@@ -101,7 +101,8 @@ def capture():
 #         box = cv2.boxPoints(rect)
 #         box = np.int0(box)
 #         cv2.drawContours(img,[box],0,(0,0,255),2)
-        cnt = np.array(cnts).reshape((-1,1,2)).astype(np.int32)
+        c = max(cnts, key = cv2.contourArea))
+        goal = polygon(c)
         # Display the resulting frame 
         cv2.drawContours(res, [cnt], 0, (0,0,255), 5)
         print(len(cnt))
