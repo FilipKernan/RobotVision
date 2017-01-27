@@ -32,6 +32,12 @@ CAL_L = FRAME_CX + (CAL_SIZE / 2)
 CAL_UL = (CAL_L, CAL_UP)
 CAL_LR = (CAL_R, CAL_LO)
 
+def polygon(c):
+    """Remove concavities from a contour and turn it into a polygon."""
+    hull = cv2.convexHull(c)
+    epsilon = 0.025 * cv2.arcLength(hull, True)
+    goal = cv2.approxPolyDP(hull, epsilon, True)
+    return goal 
 
 def calibration_box(img):
     """Return HSV color in the calibration box."""
@@ -101,7 +107,7 @@ def capture():
 #         box = cv2.boxPoints(rect)
 #         box = np.int0(box)
 #         cv2.drawContours(img,[box],0,(0,0,255),2)
-        c = max(cnts, key = cv2.contourArea))
+        c = max(cnts, key = cv2.contourArea)
         goal = polygon(c)
         # Display the resulting frame 
         cv2.drawContours(res, [cnt], 0, (0,0,255), 5)
@@ -121,6 +127,7 @@ def capture():
     #camera.release()
     cv2.destroyAllWindows()
     #use find contures and use area
+
 
 if __name__ == "__main__":
     print("Hello World")
