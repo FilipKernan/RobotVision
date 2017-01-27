@@ -108,7 +108,7 @@ def capture():
 #         box = np.int0(box)
 #         cv2.drawContours(img,[box],0,(0,0,255),2)
         c = max(cnts, key = cv2.contourArea)
-        goal = polygon(c)
+        goal = polygon(cnts)
         # Display the resulting frame 
         cv2.drawContours(res, [goal], 0, (0,0,255), 5)
         
