@@ -108,10 +108,12 @@ def capture():
 #         box = np.int0(box)
 #         cv2.drawContours(img,[box],0,(0,0,255),2)
         c = max(cnts, key = cv2.contourArea)
-        goal = polygon(cnts)
+        d = min(cnts, key = cv2.contourArea)
+        nearStrip = polygon(c)
+        farStrip = polygon(d)    
         # Display the resulting frame 
-        cv2.drawContours(res, [goal], 0, (0,0,255), 5)
-        
+        cv2.drawContours(res, [nearStrip], 0, (0,0,255), 5)
+        cv2.drawContours(res, [farStrip], 0, (255,0,0), 5)
         cv2.imshow('frame', frame)
         cv2.imshow('mask', mask)
         cv2.imshow('res', res)
