@@ -108,7 +108,7 @@ def capture():
 #         box = np.int0(box)
 #         cv2.drawContours(img,[box],0,(0,0,255),2)
         c = max(cnts, key = cv2.contourArea)
-        d = max(cnts, key = cv2.contourArea)-1
+        d = max(cnts, key = cv2.contourArea)
         nearStrip = polygon(c)
         farStrip = polygon(d)    
         # Display the resulting frame 
