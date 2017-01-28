@@ -63,7 +63,7 @@ def findTargets(contours):
     print(largestArea)
     #areaArray.remove(largestArea)
     print("e")
-    secondLargestArea = contours[1]
+    secondLargestArea = max(contours, key = cv2.contourArea)
     print("f")
     return largestArea, secondLargestArea
 
