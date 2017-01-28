@@ -54,9 +54,9 @@ def calibration_box(img):
     
     return average_color
 
-def findTargets(hir):
+def findTargets(contours):
     print("a")
-    areaArray = sorted(hir, key =cv2.contourArea(), reverse = True)
+    contours.sort(cv2.contourArea)
     print("b")
     print("c")
     largestArea = np.argmax(areaArray)
