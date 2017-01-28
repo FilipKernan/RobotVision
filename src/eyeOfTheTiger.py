@@ -33,6 +33,9 @@ CAL_L = FRAME_CX + (CAL_SIZE / 2)
 CAL_UL = (CAL_L, CAL_UP)
 CAL_LR = (CAL_R, CAL_LO)
 
+
+areaArray = []
+
 def polygon(c):
     """Remove concavities from a contour and turn it into a polygon."""
     hull = cv2.convexHull(c)
