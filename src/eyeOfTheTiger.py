@@ -52,14 +52,19 @@ def calibration_box(img):
     return average_color
 
 def findTargets(contours):
+    print("a")
     for i, c in enumerate(contours):
         area = cv2.contourArea(c)
         areaArray.append(area)
+    print("b")
     sortedArea = sorted(zip(areaArray, contours), key = lambda x: x[0], reverse = True)
-    
+    print("c")
     largestArea = max(sortedArea, key = cv2.contourArea)
+    print("d")
     sortedArea.remove(largestArea)
+    print("e")
     secondLargestArea = max(sortedArea, key = cv2.contourArea)
+    print("f")
     return largestArea, secondLargestArea
 
 
