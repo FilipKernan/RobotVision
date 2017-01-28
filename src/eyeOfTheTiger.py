@@ -56,13 +56,7 @@ def calibration_box(img):
 
 def findTargets(contours):
     print("a")
-    if len(contours) != 0:
-        for i, c in enumerate(contours):
-            print("start of for loop works")
-            area = cv2.contourArea(c)
-            print("second part of for loop works")
-            areaArray.append(area)
-            print("end of for loop works")
+    areaArray = sorted(contours, key =cv2.contourArea(), reverse = True)
     print("b")
     print("c")
     largestArea = np.argmax(areaArray)
