@@ -126,7 +126,7 @@ def capture():
                 # Display the resulting frame 
                 cv2.drawContours(res, [nearStrip], 0, (0,0,255), 3)
                 cv2.drawContours(res, [farStrip], 0, (255,0,0), 5)
-        except ValueError:
+        except cv2.error:
             print("no area to operate on!!!!!!!!!!")
         cv2.imshow('frame', frame)
         cv2.imshow('mask', mask)
