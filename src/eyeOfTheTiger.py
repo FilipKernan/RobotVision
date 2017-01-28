@@ -9,6 +9,7 @@ import io
 import logging
 import math
 import time
+from pylint.testutils import catch_warnings
 
 
 
@@ -117,13 +118,16 @@ def capture():
 #         box = cv2.boxPoints(rect)
 #         box = np.int0(box)
 #         cv2.drawContours(img,[box],0,(0,0,255),2)
-        if cv2.contourArea(max(cnts, key = cv2.contourArea)) > 1500:  
-            c,d = findTargets(cnts)
-            nearStrip = polygon(c)
-            farStrip = polygon(d)    
-            # Display the resulting frame 
-            cv2.drawContours(res, [nearStrip], 0, (0,0,255), 3)
-            cv2.drawContours(res, [farStrip], 0, (255,0,0), 5)
+        try:
+            if cv2.contourArea(max(cnts, key = cv2.contourArea)) > 1500:  
+                c,d = findTargets(cnts)
+                nearStrip = polygon(c)
+                farStrip = polygon(d)    
+                # Display the resulting frame 
+                cv2.drawContours(res, [nearStrip], 0, (0,0,255), 3)
+                cv2.drawContours(res, [farStrip], 0, (255,0,0), 5)
+        except ValueError:
+            print("no area to operate on!!!!!!!!!!")
         cv2.imshow('frame', frame)
         cv2.imshow('mask', mask)
         cv2.imshow('res', res)
