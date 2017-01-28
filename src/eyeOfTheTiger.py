@@ -63,13 +63,12 @@ def findTargets(contours):
         areaArray.append(area)
         print("end of for loop works")
     print("b")
-    sortedArea = sorted(zip(areaArray, contours), key = lambda x: x[0], reverse = True)
     print("c")
-    largestArea = max(sortedArea, key = cv2.contourArea)
+    largestArea = np.argmax(areaArray)
     print("d")
-    sortedArea.remove(largestArea)
+    areaArray.remove(largestArea)
     print("e")
-    secondLargestArea = max(sortedArea, key = cv2.contourArea)
+    secondLargestArea = np.argmax(areaArray)
     print("f")
     return largestArea, secondLargestArea
 
