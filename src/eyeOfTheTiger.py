@@ -57,8 +57,11 @@ def calibration_box(img):
 def findTargets(contours):
     print("a")
     for i, c in enumerate(contours):
+        print("start of for loop works")
         area = cv2.contourArea(c)
+        print("second part of for loop works")
         areaArray.append(area)
+        print("end of for loop works")
     print("b")
     sortedArea = sorted(zip(areaArray, contours), key = lambda x: x[0], reverse = True)
     print("c")
