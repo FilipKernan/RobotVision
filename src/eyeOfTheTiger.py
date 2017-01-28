@@ -121,13 +121,17 @@ def capture():
 #         box = np.int0(box)
 #         cv2.drawContours(img,[box],0,(0,0,255),2)
         try:
-            if cv2.contourArea(max(cnts, key = cv2.contourArea)) > 1500:  
-                c,d = findTargets(cnts)
-                nearStrip = polygon(c)
-                farStrip = polygon(d)    
-                # Display the resulting frame 
-                cv2.drawContours(res, [nearStrip], 0, (0,0,255), 5)
-                cv2.drawContours(res, [farStrip], 0, (255,0,0), 5)
+            if len(cnts) > 0:
+                area = cv2.contourArea(cnts)
+                if  area > 1500:  
+                    c,d = findTargets(cnts)
+                    nearStrip = polygon(c)
+                    farStrip = polygon(d)    
+                    # Display the resulting frame 
+                    print(c)
+                    print(d)
+                    cv2.drawContours(res, [nearStrip], 0, (0,0,255), 5)
+                    cv2.drawContours(res, [farStrip], 0, (255,0,0), 5)
         except cv2.error:
             print("no area to operate on!!!!!!!!!!")
         cv2.imshow('frame', frame)
