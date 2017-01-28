@@ -128,8 +128,9 @@ def capture():
                 #area = cv2.contourArea(c)
                 print("is ")
                 if  True: 
-                    print("working!") 
+                     
                     c,d = findTargets(cnts)
+                    print("working!")
                     nearStrip = polygon(c)
                     farStrip = polygon(d)    
                     # Display the resulting frame 
