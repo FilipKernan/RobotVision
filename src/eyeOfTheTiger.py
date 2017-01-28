@@ -56,8 +56,10 @@ def findTargets(contours):
         area = cv2.contourArea(c)
         areaArray.append(area)
     sortedArea = sorted(zip(areaArray, contours), key = lambda x: x[0], reverse = True)
-    largestArea = sortedArea[1][0]
-    secondLargestArea = sortedArea[1][1]
+    
+    largestArea = max(sortedArea, key = cv2.contourArea)
+    sortedArea.remove(largestArea)
+    secondLargestArea = max(sortedArea, key = cv2.contourArea)
     return largestArea, secondLargestArea
 
 
@@ -124,7 +126,7 @@ def capture():
                 nearStrip = polygon(c)
                 farStrip = polygon(d)    
                 # Display the resulting frame 
-                cv2.drawContours(res, [nearStrip], 0, (0,0,255), 3)
+                cv2.drawContours(res, [nearStrip], 0, (0,0,255), 5)
                 cv2.drawContours(res, [farStrip], 0, (255,0,0), 5)
         except cv2.error:
             print("no area to operate on!!!!!!!!!!")
