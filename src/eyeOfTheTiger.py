@@ -99,7 +99,7 @@ def capture():
 
       
         
-        cnts, hir= cv2.findContours(mask.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+        cnts= cv2.findContours(mask.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
         #cv2.imshow('cnts', cnts)
         #temp use gyro for angle of attack
         #IDK for angle of elevation
