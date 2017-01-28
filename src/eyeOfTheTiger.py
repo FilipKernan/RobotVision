@@ -107,7 +107,7 @@ def capture():
 
       
         
-        _, cnts, hir= cv2.findContours(mask.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+        cnts, _= cv2.findContours(mask.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
         #cv2.imshow('cnts', cnts)
         #temp use gyro for angle of attack
         #IDK for angle of elevation
@@ -134,7 +134,7 @@ def capture():
                 print("is ")
                 if  True: 
                      
-                    c,d = findTargets(hir)
+                    c,d = findTargets(cnts)
                     print("working!")
                     nearStrip = polygon(c)
                     farStrip = polygon(d)    
