@@ -59,14 +59,13 @@ def findTargets(contours):
     contours.sort(cv2.contourArea)
     print("b")
     print("c")
-    
     largestArea = contours[0]
     print(largestArea)
     #areaArray.remove(largestArea)
     print("e")
-    #secondLargestArea = contours[1]
+    secondLargestArea = contours[1]
     print("f")
-    return largestArea
+    return largestArea, secondLargestArea
 
 
 
@@ -135,15 +134,15 @@ def capture():
                 print("is ")
                 if  True: 
                      
-                    c = findTargets(cnts)
+                    c,d = findTargets(cnts)
                     print("working!")
                     nearStrip = polygon(c)
-                    #farStrip = polygon(d)    
+                    farStrip = polygon(d)    
                     # Display the resulting frame 
                     print(c)
-                    #print(d)
+                    print(d)
                     cv2.drawContours(res, [nearStrip], 0, (0,0,255), 5)
-                    #cv2.drawContours(res, [farStrip], 0, (255,0,0), 5)
+                    cv2.drawContours(res, [farStrip], 0, (255,0,0), 5)
         except cv2.error:
             print("no area to operate on!!!!!!!!!!")
         cv2.imshow('frame', frame)
