@@ -123,7 +123,7 @@ def capture():
         try:
             if len(cnts) > 0:
                 print("yes ")
-                c = max(cnts, key = cv2.contourArea)
+                a = max(cnts, key = cv2.contourArea)
                 print("this ")
                 area = cv2.contourArea(c)
                 print("is ")
