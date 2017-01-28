@@ -123,11 +123,11 @@ def capture():
         try:
             if len(cnts) > 0:
                 print("yes ")
-                a = max(cnts, key = cv2.contourArea)
+                #a = max(cnts, key = cv2.contourArea)
                 print("this ")
-                area = cv2.contourArea(c)
+                #area = cv2.contourArea(c)
                 print("is ")
-                if  area > 1500: 
+                if  True: 
                     print("working!") 
                     c,d = findTargets(cnts)
                     nearStrip = polygon(c)
