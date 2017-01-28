@@ -50,6 +50,16 @@ def calibration_box(img):
     
     return average_color
 
+def findTargets(contours):
+    for i, c in enumerate(contours):
+        area = cv2.contourArea(c)
+        areaArray.append(area)
+    sortedArea = sorted(zip(areaArray, contours), key = lambda x: x[0], reverse = True)
+    largestArea = sortedArea[0][0]
+    secondLargestArea = sortedArea[1][1]
+    return largestArea, secondLargestArea
+
+
 
 def capture():
     #camera.start_preview()
@@ -89,7 +99,7 @@ def capture():
 
       
         
-        cnts= cv2.findContours(mask.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)[-2]
+        cnts, hir= cv2.findContours(mask.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
         #cv2.imshow('cnts', cnts)
         #temp use gyro for angle of attack
         #IDK for angle of elevation
@@ -107,14 +117,13 @@ def capture():
 #         box = cv2.boxPoints(rect)
 #         box = np.int0(box)
 #         cv2.drawContours(img,[box],0,(0,0,255),2)
-        c = max(cnts, key = cv2.contourArea)
-        
-        d = max(cnts, key = cv2.contourArea)
-        nearStrip = polygon(c)
-        farStrip = polygon(d)    
-        # Display the resulting frame 
-        cv2.drawContours(res, [cnts], -1, (0,0,255), 3)
-        #cv2.drawContours(res, [farStrip], 0, (255,0,0), 5)
+        if cv2.contourArea(cnts) > 1500:  
+            c,d = findTargets(cnts)
+            nearStrip = polygon(c)
+            farStrip = polygon(d)    
+            # Display the resulting frame 
+            cv2.drawContours(res, [nearStrip], 0, (0,0,255), 3)
+            cv2.drawContours(res, [farStrip], 0, (255,0,0), 5)
         cv2.imshow('frame', frame)
         cv2.imshow('mask', mask)
         cv2.imshow('res', res)
@@ -133,7 +142,7 @@ def capture():
 
 
 if __name__ == "__main__":
-    print("Hello World")
+    
     print(cv2.__version__)
     
     capture()
