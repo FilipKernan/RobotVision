@@ -56,7 +56,7 @@ def findTargets(contours):
         area = cv2.contourArea(c)
         areaArray.append(area)
     sortedArea = sorted(zip(areaArray, contours), key = lambda x: x[0], reverse = True)
-    largestArea = sortedArea[0][0]
+    largestArea = sortedArea[1][0]
     secondLargestArea = sortedArea[1][1]
     return largestArea, secondLargestArea
 
