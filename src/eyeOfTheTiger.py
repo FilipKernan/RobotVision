@@ -122,9 +122,13 @@ def capture():
 #         cv2.drawContours(img,[box],0,(0,0,255),2)
         try:
             if len(cnts) > 0:
+                print("yes ")
                 c = max(cnts, key = cv2.contourArea)
+                print("this ")
                 area = cv2.contourArea(c)
-                if  area > 1500:  
+                print("is ")
+                if  area > 1500: 
+                    print("working!") 
                     c,d = findTargets(cnts)
                     nearStrip = polygon(c)
                     farStrip = polygon(d)    
