@@ -56,14 +56,14 @@ def calibration_box(img):
 
 def findTargets(contours):
     print("a")
-    contours.sort(cv2.contourArea)
+    contours.sort(cv2.contourArea, True)
     print("b")
     print("c")
-    largestArea = np.argmax(areaArray)
+    largestArea = contours[0]
     print("d")
-    areaArray.remove(largestArea)
+    #areaArray.remove(largestArea)
     print("e")
-    secondLargestArea = np.argmax(areaArray)
+    secondLargestArea = contours[1]
     print("f")
     return largestArea, secondLargestArea
 
