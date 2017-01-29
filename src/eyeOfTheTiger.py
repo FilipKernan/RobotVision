@@ -32,9 +32,10 @@ CAL_R = FRAME_CX - (CAL_SIZE / 2)
 CAL_L = FRAME_CX + (CAL_SIZE / 2)
 CAL_UL = (CAL_L, CAL_UP)
 CAL_LR = (CAL_R, CAL_LO)
+secondLargestContour = 0
 
 
-areaArray = []
+
 
 def polygon(c):
     """Remove concavities from a contour and turn it into a polygon."""
@@ -55,17 +56,14 @@ def calibration_box(img):
     return average_color
 
 def findTargets(contours):
-    print("a")
-    contours
-    print("b")
-    print("c")
-    largestArea = max(contours, key = cv2.contourArea)
-    print(largestArea)
-    #areaArray.remove(largestArea)
-    contours.remove(largestArea.all)
-    print("e")
-    secondLargestArea = max(contours, key = cv2.contourArea)
-    print("f")
+    for i in range(0,2):
+        if (i < 1):
+            largestContour = max(contours, key = cv2.contourArea)
+            secondLargestContour = min(contours, key = cv2.contourArea)
+        for c in contours:
+            if(c.contourArea()!= largestContour.contourArea()):
+                if(c.contourArea() > secondLargestContour):
+                    secondLargestContour = c
     return largestArea, secondLargestArea
 
 
