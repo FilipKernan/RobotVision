@@ -9,6 +9,7 @@ import io
 import logging
 import math
 import time
+from numpy import log
 
 
 
@@ -54,6 +55,13 @@ def calibration_box(img):
     average_color = np.uint8([[average_color]])
     
     return average_color
+def findDistance(area):
+    area = area + 5700
+    dis = math.pow(area, 1.999)
+    dis = dis * 4697990000
+    dis = dis + 8
+    return dis
+    
 
 def findTargets(contours):
     for i in range(0,2):
@@ -141,8 +149,9 @@ def capture():
                 for i in range (0,20):
                     area = area + cv2.contourArea(nearStrip) + cv2.contourArea(farStrip)
                 area = area /21
-                print("this is the avg: %d" % area)
-                print("this is base area: %d" % (cv2.contourArea(nearStrip) + cv2.contourArea(farStrip)))
+                dis = findDistance(area)
+                
+                print(dis)
                 cv2.drawContours(res, [nearStrip], 0, (0,0,255), 5)
                 cv2.drawContours(res, [farStrip], 0, (255,0,0), 5)
         except cv2.error:
