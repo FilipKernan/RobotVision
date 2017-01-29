@@ -32,7 +32,7 @@ CAL_R = FRAME_CX - (CAL_SIZE / 2)
 CAL_L = FRAME_CX + (CAL_SIZE / 2)
 CAL_UL = (CAL_L, CAL_UP)
 CAL_LR = (CAL_R, CAL_LO)
-secondLargestContour = 0
+
 
 
 
@@ -111,14 +111,14 @@ def capture():
         #temp use gyro for angle of attack
         #IDK for angle of elevation
         #area = cv2.contourArea(cnts)
-        #print(area)
-        #print(np.array_str(calibration_box(frame)))
+        #(area)
+        #(np.array_str(calibration_box(frame)))
         
 #         ret,thresh = cv2.threshold(mask,50,130,200)
 #         contours,hierarchy = cv2.findContours(mask, 1, 2)
 #         cnt = contours[0]
 #         M = cv2.moments(cnt)
-#         print M
+#          M
 #         
 #         rect = cv2.minAreaRect(cnt)
 #         box = cv2.boxPoints(rect)
@@ -126,30 +126,29 @@ def capture():
 #         cv2.drawContours(img,[box],0,(0,0,255),2)
         try:
             if len(cnts) > 0:
-                print("yes ")
+                
                 #a = max(cnts, key = cv2.contourArea)
-                print("this ")
+                
                 #area = cv2.contourArea(c)
-                print("is ")
-                if  True: 
-                     
-                    c,d = findTargets(cnts)
-                    print("working!")
-                    nearStrip = polygon(c)
-                    farStrip = polygon(d)    
-                    # Display the resulting frame 
-                    print(c)
-                    print(d)
-                    cv2.drawContours(res, [nearStrip], 0, (0,0,255), 5)
-                    cv2.drawContours(res, [farStrip], 0, (255,0,0), 5)
+                
+                 
+                c,d = findTargets(cnts)
+                
+                nearStrip = polygon(c)
+                farStrip = polygon(d)    
+                # Display the resulting frame 
+                area = cv2.contourArea(nearStrip) + cv2.contourArea(farStrip)
+                print(area)
+                cv2.drawContours(res, [nearStrip], 0, (0,0,255), 5)
+                cv2.drawContours(res, [farStrip], 0, (255,0,0), 5)
         except cv2.error:
             print("no area to operate on!!!!!!!!!!")
         cv2.imshow('frame', frame)
         cv2.imshow('mask', mask)
         cv2.imshow('res', res)
         #cv2.imshow('cnt', cnts)
-        #print(res.centroid.x)
-        #print(res.centroid.y)
+        #(res.centroid.x)
+        #(res.centroid.y)
         
          # capture a keypress
         key = cv2.waitKey(20) & 0xFF
