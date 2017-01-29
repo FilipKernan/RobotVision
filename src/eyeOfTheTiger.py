@@ -141,8 +141,8 @@ def capture():
                 for i in range (0,20):
                     area = area + cv2.contourArea(nearStrip) + cv2.contourArea(farStrip)
                 area = area /21
-                print("this is the avg" + area)
-                print("this is base area" + (cv2.contourArea(nearStrip) + cv2.contourArea(farStrip)))
+                print("this is the avg: %d" % area)
+                print("this is base area: %d" % (cv2.contourArea(nearStrip) + cv2.contourArea(farStrip)))
                 cv2.drawContours(res, [nearStrip], 0, (0,0,255), 5)
                 cv2.drawContours(res, [farStrip], 0, (255,0,0), 5)
         except cv2.error:
