@@ -62,7 +62,7 @@ def findTargets(contours):
             secondLargestContour = min(contours, key = cv2.contourArea)
         for c in contours:
             if(cv2.contourArea(c)!= cv2.contourArea(c)):
-                if(cv2.contourArea() > cv2.contourArea(secondLargestContour)):
+                if(cv2.contourArea(c) > cv2.contourArea(secondLargestContour)):
                     secondLargestContour = c
     return largestContour, secondLargestContour
 
