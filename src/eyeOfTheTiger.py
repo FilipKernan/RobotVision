@@ -137,6 +137,7 @@ def capture():
                 nearStrip = polygon(c)
                 farStrip = polygon(d)    
                 # Display the resulting frame 
+                area = 0
                 for i in range (0,20):
                     area = area + cv2.contourArea(nearStrip) + cv2.contourArea(farStrip)
                 area = area /21
