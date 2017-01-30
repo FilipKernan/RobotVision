@@ -146,18 +146,18 @@ def capture():
                 farStrip = polygon(d)    
                 # Display the resulting frame 
                 area = 0
-                for i in range (0,20):
+                for i in range (0,40):
                     area = area + cv2.contourArea(nearStrip) + cv2.contourArea(farStrip)
-                area = area /21
+                area = area /41
                 dis = findDistance(area)
                 
-                print(dis)
+                print(area)
                 cv2.drawContours(res, [nearStrip], 0, (0,0,255), 5)
                 cv2.drawContours(res, [farStrip], 0, (255,0,0), 5)
         except cv2.error:
             print("no area to operate on!!!!!!!!!!")
         cv2.imshow('frame', frame)
-        cv2.imshow('mask', mask)
+        #cv2.imshow('mask', mask)
         cv2.imshow('res', res)
         #cv2.imshow('cnt', cnts)
         #(res.centroid.x)
