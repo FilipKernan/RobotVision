@@ -151,7 +151,7 @@ def capture():
                 area = area /41
                 dis = findDistance(area)
                 area1 = cv2.contourArea(nearStrip) + cv2.contourArea(farStrip)
-                print(area1)
+                
                 print(area)
                 cv2.drawContours(res, [nearStrip], 0, (0,0,255), 5)
                 cv2.drawContours(res, [farStrip], 0, (255,0,0), 5)
