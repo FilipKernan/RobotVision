@@ -56,10 +56,10 @@ def calibration_box(img):
     
     return average_color
 def findDistance(area):
-    area = area + 5700
-    dis = math.pow(area, -1.999)
-    dis = dis * 4697990000
-    dis = dis + 8
+    area = area - 1251.1
+    dis = math.pow(area, -0.27052)
+    dis = dis * 545.16
+    dis = dis - 18.387
     return dis
     
 
