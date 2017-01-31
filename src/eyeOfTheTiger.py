@@ -106,6 +106,9 @@ def capture():
                 cv2.drawContours(res, [farStrip], 0, (255,0,0), 5)
         except cv2.error:
             print("no area to operate on!!!!!!!!!!")
+        except ValueError:
+            print(ValueError)
+            print("you messed up")
         cv2.imshow('frame', frame)
         #cv2.imshow('mask', mask)
         cv2.imshow('res', res)
