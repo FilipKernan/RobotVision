@@ -112,7 +112,7 @@ def capture():
                 M = cv2.moments(nearStrip)
                 N = cv2.moments(farStrip)
                 if M['m00']> 0:
-                    if N['n00'] > 0:
+                    if N['m00'] > 0:
                        ax, ay = calc_center(M)
                        bx, by = calc_center(N)
                        cx = ((ax+bx)/2)
@@ -120,7 +120,9 @@ def capture():
                        center = (cx,cy)
                        cv2.circle(res, center, 5, (0,255,0),-1) 
                        error = cx - FRAME_CX
-                       angle = asin(error/dis)
+                       print("a")
+                       angle = asin(error)
+                       print("b")
                        print(angle)
                 cv2.drawContours(res, [nearStrip], 0, (0,0,255), 5)
                 cv2.drawContours(res, [farStrip], 0, (255,0,0), 5)
