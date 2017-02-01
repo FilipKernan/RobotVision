@@ -8,7 +8,7 @@ import math
 import os
 import time
 from numpy import log
-from math 
+import math 
 logging.basicConfig(level=logging.DEBUG)
 
 
