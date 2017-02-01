@@ -7,8 +7,8 @@ import logging
 import math
 import os
 import time
-from numpy import log
-import math 
+from numpy import log 
+import cmath
 logging.basicConfig(level=logging.DEBUG)
 
 
@@ -121,7 +121,7 @@ def capture():
                        cv2.circle(res, center, 5, (0,255,0),-1) 
                        error = cx - FRAME_CX
                        print("a")
-                       angle = math.asin((error/dis))
+                       angle = cmath.asin((error/dis))
                        print("b")
                        print(angle)
                 cv2.drawContours(res, [nearStrip], 0, (0,0,255), 5)
