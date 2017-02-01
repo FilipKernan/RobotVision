@@ -8,6 +8,7 @@ import math
 import os
 import time
 from numpy import log
+from math import asin
 logging.basicConfig(level=logging.DEBUG)
 
 
@@ -114,8 +115,13 @@ def capture():
                     if N['m00'] > 0:
                        ax, ay = calc_center(M)
                        bx, by = calc_center(N)
-                       center = (((ax+bx)/2),((ay+by)/2))
+                       cx = ((ax+bx)/2)
+                       cy = (ay+by)/2
+                       center = (cx,cy)
                        cv2.circle(res, center, 5, (0,255,0),-1) 
+                       error = cx - FRAME_CX
+                       angle = asin(error/dis)
+                       print(angle)
                 cv2.drawContours(res, [nearStrip], 0, (0,0,255), 5)
                 cv2.drawContours(res, [farStrip], 0, (255,0,0), 5)
         except cv2.error:
