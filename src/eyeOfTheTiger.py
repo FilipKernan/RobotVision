@@ -32,6 +32,12 @@ CAL_LR = (CAL_R, CAL_LO)
 
 
 
+def calc_center(M):
+    """Detect the center given the moment of a contour."""
+    cx = int(M['m10'] / M['m00'])
+    cy = int(M['m01'] / M['m00'])
+    return cx, cy
+
 def polygon(c):
     """Remove concavities from a contour and turn it into a polygon."""
     hull = cv2.convexHull(c)
@@ -102,6 +108,14 @@ def capture():
                 #prints the distance to the center between the two strips
                 print(dis)
                 #draw the contours on the res display 
+                M = cv2.moments(nearStrip)
+                N = cv2.moments(farStrip)
+                if M['m00']> 0:
+                    if N['m00'] > 0:
+                       ax, ay = calc_center(M)
+                       bx, by = calc_center(N)
+                       center = (((ax+bx)/2),((ay+by)/2))
+                       cv2.circle(res, center, 5, (0,255,0),-1) 
                 cv2.drawContours(res, [nearStrip], 0, (0,0,255), 5)
                 cv2.drawContours(res, [farStrip], 0, (255,0,0), 5)
         except cv2.error:
