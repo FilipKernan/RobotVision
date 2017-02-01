@@ -2,7 +2,10 @@
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
 
-#TODO test angle and write networkTable code
+#TODO: rewrite the findAngle so that it will work(unit converion)
+#TODO: test angle and write networkTable code
+#TODO: write calabration code for comp
+#TODO: ask
 
 import numpy as np
 import cv2
@@ -11,7 +14,6 @@ import math
 import os
 import time
 from numpy import log 
-import cmath
 logging.basicConfig(level=logging.DEBUG)
 
 
@@ -23,7 +25,7 @@ UPPER_GREEN = np.array([80, 256, 256])
 FRAME_CX = 1280/2
 FRAME_CY = 780/2
 # Calibration box dimensions
-CAL_AREA = 1600
+CAL_AREA = 2000
 CAL_SIZE = int(math.sqrt(CAL_AREA))
 CAL_UP = FRAME_CY + (CAL_SIZE / 2)
 CAL_LO = FRAME_CY - (CAL_SIZE / 2)
@@ -31,9 +33,10 @@ CAL_R = FRAME_CX - (CAL_SIZE / 2)
 CAL_L = FRAME_CX + (CAL_SIZE / 2)
 CAL_UL = (CAL_L, CAL_UP)
 CAL_LR = (CAL_R, CAL_LO)
+FocalLength = 62.39
 
 
-def findAngle(near, far, distance, frame):
+def findAngle(near, far, frame):
     M = cv2.moments(near)
     N = cv2.moments(far)
     if M['m00']> 0:
@@ -46,19 +49,24 @@ def findAngle(near, far, distance, frame):
            cv2.circle(frame, center, 5, (0,255,0),-1) 
            error = cx - FRAME_CX
            print(error)
-           if error < 0:
-               isNegative = True
-               error = math.fabs(error)
-           else:
-               isNegative = False
-           angle = math.asin((error/distance))
-           if isNegative:
-               angle = -angle
+#            if error < 0:
+#                isNegative = True
+#                error = math.fabs(error)
+#            else:
+#                isNegative = False
+           angle = math.atan((error/FocalLength))
+#            if isNegative:
+#                angle = -angle
+           '''
+           bsquared = math.pow(distance, 2) - math.pow(error, 2)
+           b = math.sqrt(bsquared)
+           angle = math.atan(error, b)
+           
+           '''
            angle = math.degrees(angle)
+           #if this doesn't work use the pythorian therom and use arcTan
            return angle
-
-
-
+       
 def calc_center(M):
     """Detect the center given the moment of a contour."""
     cx = int(M['m10'] / M['m00'])
@@ -131,11 +139,12 @@ def capture():
                     area = area + cv2.contourArea(nearStrip) + cv2.contourArea(farStrip)
                 area = area /41
                 dis = findDistance(area)
-                area1 = cv2.contourArea(nearStrip) + cv2.contourArea(farStrip)
                 #prints the distance to the center between the two strips
                 print(dis)
-                #draw the contours on the res display 
+                #Finds the angle to the peg 
                 angle = findAngle(nearStrip, farStrip, dis, res)
+                print(angle)
+                #draw the contours on the res display
                 cv2.drawContours(res, [nearStrip], 0, (0,0,255), 5)
                 cv2.drawContours(res, [farStrip], 0, (255,0,0), 5)
         except cv2.error:
@@ -144,9 +153,8 @@ def capture():
             print(ValueError)
             print("you messed up")
         cv2.imshow('frame', frame)
-        #cv2.imshow('mask', mask)
         cv2.imshow('res', res)
-         # capture a keypress
+         # wait until esc is pressed
         key = cv2.waitKey(20) & 0xFF
         # escape key
         if key == 27:
