@@ -142,7 +142,7 @@ def capture():
                 #prints the distance to the center between the two strips
                 print(dis)
                 #Finds the angle to the peg 
-                angle = findAngle(nearStrip, farStrip, dis, res)
+                angle = findAngle(nearStrip, farStrip, res)
                 print(angle)
                 #draw the contours on the res display
                 cv2.drawContours(res, [nearStrip], 0, (0,0,255), 5)
