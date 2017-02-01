@@ -112,7 +112,7 @@ def capture():
                 M = cv2.moments(nearStrip)
                 N = cv2.moments(farStrip)
                 if M['m00']> 0:
-                    if N['m00'] > 0:
+                    if N['n00'] > 0:
                        ax, ay = calc_center(M)
                        bx, by = calc_center(N)
                        cx = ((ax+bx)/2)
