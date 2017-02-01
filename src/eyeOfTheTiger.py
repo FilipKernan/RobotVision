@@ -122,7 +122,7 @@ def capture():
                        error = cx - FRAME_CX
                        print("a")
                        angle = cmath.asin((error/dis))
-                       angle = math.degrees(angle)
+                       angle = cmath.degrees(angle)
                        print("b")
                        print(angle)
                 cv2.drawContours(res, [nearStrip], 0, (0,0,255), 5)
