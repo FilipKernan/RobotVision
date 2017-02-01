@@ -1,6 +1,9 @@
 # To change this license header, choose License Headers in Project Properties.
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
+
+#TODO test angle and write networkTable code
+
 import numpy as np
 import cv2
 import logging
@@ -30,6 +33,29 @@ CAL_UL = (CAL_L, CAL_UP)
 CAL_LR = (CAL_R, CAL_LO)
 
 
+def findAngle(near, far, distance, frame):
+    M = cv2.moments(near)
+    N = cv2.moments(far)
+    if M['m00']> 0:
+        if N['m00'] > 0:
+           ax, ay = calc_center(M)
+           bx, by = calc_center(N)
+           cx = ((ax+bx)/2)
+           cy = (ay+by)/2
+           center = (cx,cy)
+           cv2.circle(frame, center, 5, (0,255,0),-1) 
+           error = cx - FRAME_CX
+           print(error)
+           if error < 0:
+               isNegative = True
+               error = math.fabs(error)
+           else:
+               isNegative = False
+           angle = math.asin((error/distance))
+           if isNegative:
+               angle = -angle
+           angle = math.degrees(angle)
+           return angle
 
 
 
@@ -109,22 +135,7 @@ def capture():
                 #prints the distance to the center between the two strips
                 print(dis)
                 #draw the contours on the res display 
-                M = cv2.moments(nearStrip)
-                N = cv2.moments(farStrip)
-                if M['m00']> 0:
-                    if N['m00'] > 0:
-                       ax, ay = calc_center(M)
-                       bx, by = calc_center(N)
-                       cx = ((ax+bx)/2)
-                       cy = (ay+by)/2
-                       center = (cx,cy)
-                       cv2.circle(res, center, 5, (0,255,0),-1) 
-                       error = cx - FRAME_CX
-                       print("a")
-                       angle = cmath.asin((error/dis))
-                       angle = cmath.degrees(angle)
-                       print("b")
-                       print(angle)
+                angle = findAngle(nearStrip, farStrip, dis, res)
                 cv2.drawContours(res, [nearStrip], 0, (0,0,255), 5)
                 cv2.drawContours(res, [farStrip], 0, (255,0,0), 5)
         except cv2.error:
@@ -148,5 +159,3 @@ def capture():
 if __name__ == "__main__":
     print(cv2.__version__)
     capture()
-
-#TODO: write code for angle and then use networkTables
