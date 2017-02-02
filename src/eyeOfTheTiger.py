@@ -153,6 +153,8 @@ def capture():
         except ValueError:
             print(ValueError)
             print("you messed up")
+        except TypeError: 
+            print(TypeError)
         cv2.imshow('frame', frame)
         cv2.imshow('res', res)
          # wait until esc is pressed
