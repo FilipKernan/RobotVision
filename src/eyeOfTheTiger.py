@@ -19,7 +19,7 @@ logging.basicConfig(level=logging.DEBUG)
 
 LOWER_GREEN = np.array([45, 0, 180])
 
-UPPER_GREEN = np.array([80, 256, 256])
+UPPER_GREEN = np.array([80, 50, 256])
 
 
 FRAME_CX = 1280/2
