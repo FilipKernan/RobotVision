@@ -23,7 +23,7 @@ UPPER_GREEN = np.array([80, 50, 256])
 
 
 FRAME_CX = 1280/2
-FRAME_CY = 780/2
+FRAME_CY = 720/2
 # Calibration box dimensions
 CAL_AREA = 2000
 CAL_SIZE = int(math.sqrt(CAL_AREA))
@@ -64,7 +64,7 @@ def findAngle(near, far, frame):
            '''
            angle = math.degrees(angle)
            #if this doesn't work use the pythorian therom and use arcTan
-           return angle
+           return error
        
 def calc_center(M):
     """Detect the center given the moment of a contour."""
