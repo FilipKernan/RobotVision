@@ -48,7 +48,7 @@ def findAngle(near, far, frame):
            center = (cx,cy)
            cv2.circle(frame, center, 5, (0,255,0),-1) 
            error = cx - FRAME_CY
-           if error < 0:
+           if error > 0:
                 isNegative = True
                 error = math.fabs(error)
            else:
