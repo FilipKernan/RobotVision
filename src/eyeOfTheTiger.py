@@ -48,6 +48,9 @@ def findAngle(near, far, frame):
            center = (cx,cy)
            cv2.circle(frame, center, 5, (0,255,0),-1) 
            error = cx - FRAME_CY
+           
+           #TODO: convert error to a distance so that I can use arcTan: really just need to know horizantal offset
+           #TODO: also calculte angle of attack based of of ratio of the two areas
            if error > 0:
                 isNegative = True
                 error = math.fabs(error)
@@ -142,10 +145,7 @@ def capture():
                 print(dis)
                 #Finds the angle to the peg 
                 angle = findAngle(nearStrip, farStrip, res)
-                print("angle1 is %d" % angle)
-                if angle != 'NoneType':
-                    angle = angle +30 
-                print("angle is %d" %angle)
+                print("error is %d" % angle)
                 #draw the contours on the res display
                 cv2.drawContours(res, [nearStrip], 0, (0,0,255), 5)
                 cv2.drawContours(res, [farStrip], 0, (255,0,0), 5)
