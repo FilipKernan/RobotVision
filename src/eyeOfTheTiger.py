@@ -51,14 +51,14 @@ def findAngle(near, far, frame):
            
            #TODO: convert error to a distance so that I can use arcTan: really just need to know horizantal offset
            #TODO: also calculte angle of attack based of of ratio of the two areas
-           if error > 0:
-                isNegative = True
-                error = math.fabs(error)
-           else:
-                isNegative = False
-           angle = math.atan((error/FocalLength))
-           if isNegative:
-                angle = -angle
+#            if error > 0:
+#                 isNegative = True
+#                 error = math.fabs(error)
+#            else:
+#                 isNegative = False
+#            angle = math.atan((error/FocalLength))
+#            if isNegative:
+#                 angle = -angle
            '''
            bsquared = math.pow(distance, 2) - math.pow(error, 2)
            b = math.sqrt(bsquared)
