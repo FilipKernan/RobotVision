@@ -36,7 +36,7 @@ CAL_LR = (CAL_R, CAL_LO)
 FocalLength = 62.39
 
 
-def findAngle(near, far, dis):
+def findAngle(near, far, frame, dis):
     M = cv2.moments(near)
     N = cv2.moments(far)
     if M['m00']> 0:
@@ -147,7 +147,7 @@ def capture():
                 #prints the distance to the center between the two strips
                 print(dis)
                 #Finds the angle to the peg 
-                angle = findAngle(nearStrip, farStrip, dis)
+                angle = findAngle(nearStrip, farStrip, res, dis)
                 print("error is %d" % angle)
                 #draw the contours on the res display
                 cv2.drawContours(res, [nearStrip], 0, (0,0,255), 5)
