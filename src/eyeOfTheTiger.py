@@ -67,7 +67,7 @@ def findAngle(near, far, frame, dis):
            '''
            dis1 = error* -39.714
            dis1 -= 40.714
-           angle = math.atan(dis1/dis)
+           angle = math.atan(dis/dis1)
            #angle = math.degrees(angle)
            #if this doesn't work use the pythorian therom and use arcTan
            return angle
