@@ -36,7 +36,7 @@ CAL_LR = (CAL_R, CAL_LO)
 FocalLength = 62.39
 
 
-def findAngle(near, far, frame):
+def findAngle(near, far, dis):
     M = cv2.moments(near)
     N = cv2.moments(far)
     if M['m00']> 0:
@@ -65,6 +65,9 @@ def findAngle(near, far, frame):
            angle = math.atan(error, b)
            
            '''
+           dis1 = error* -39.714
+           dis1 -= 40.714
+           angle = math.atan(dis1/dis)
            #angle = math.degrees(angle)
            #if this doesn't work use the pythorian therom and use arcTan
            return error
@@ -144,7 +147,7 @@ def capture():
                 #prints the distance to the center between the two strips
                 print(dis)
                 #Finds the angle to the peg 
-                angle = findAngle(nearStrip, farStrip, res)
+                angle = findAngle(nearStrip, farStrip, dis)
                 print("error is %d" % angle)
                 #draw the contours on the res display
                 cv2.drawContours(res, [nearStrip], 0, (0,0,255), 5)
