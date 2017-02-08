@@ -145,11 +145,11 @@ def capture():
                 area = area /41
                 dis = findDistance(area)
                 #prints the distance to the center between the two strips
-                print(dis)
-                #print("Near strip has %d area and far strip has %d area" % cv2.contourArea(nearStrip) % cv2.contourArea(farStrip))
+                #print(dis)
+                print("ratio of near to far strip area is %d" % (cv2.contourArea(nearStrip)/cv2.contourArea(farStrip)))
                 #Finds the angle to the peg 
-                angle = findAngle(nearStrip, farStrip, res, dis)
-                print("error is %d" % angle)
+                #angle = findAngle(nearStrip, farStrip, res, dis)
+                #print("error is %d" % angle)
                 #draw the contours on the res display
                 cv2.drawContours(res, [nearStrip], 0, (0,0,255), 5)
                 cv2.drawContours(res, [farStrip], 0, (255,0,0), 5)
