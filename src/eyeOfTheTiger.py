@@ -70,7 +70,7 @@ def findAngle(near, far, frame, dis):
            angle = math.asin(dis1/dis)
            #angle = math.degrees(angle)
            #if this doesn't work use the pythorian therom and use arcTan
-           return dis1
+           return angle
        
 def calc_center(M):
     """Detect the center given the moment of a contour."""
@@ -146,7 +146,7 @@ def capture():
                 dis = findDistance(area)
                 #prints the distance to the center between the two strips
                 print(dis)
-                print("Near strip has %d area and far strip has %d area" % cv2.contourArea(nearStrip) % cv2.contourArea(farStrip))
+                #print("Near strip has %d area and far strip has %d area" % cv2.contourArea(nearStrip) % cv2.contourArea(farStrip))
                 #Finds the angle to the peg 
                 angle = findAngle(nearStrip, farStrip, res, dis)
                 print("error is %d" % angle)
