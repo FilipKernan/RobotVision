@@ -70,7 +70,7 @@ def findAngle(near, far, frame, dis):
            angle = math.asin(dis1/dis)
            #angle = math.degrees(angle)
            #if this doesn't work use the pythorian therom and use arcTan
-           return angle
+           return dis1
        
 def calc_center(M):
     """Detect the center given the moment of a contour."""
