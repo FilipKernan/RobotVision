@@ -154,7 +154,8 @@ def capture():
                 print(dis)
                 idealw = h/2.5
                 if(idealw != w):
-                    print("h/2.5 != w")
+                    g = w - idealw
+                    print(g)
                 #Finds the angle to the peg 
                 #angle = findAngle(nearStrip, farStrip, res, dis)
                 #print("error is %d" % angle)
