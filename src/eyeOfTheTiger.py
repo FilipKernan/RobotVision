@@ -149,6 +149,9 @@ def capture():
                 #print(dis)
                 #print(w)
                 print(h)
+                dis = -0.07925 * h
+                dis = dis + 32.994
+                print(dis)
                 #Finds the angle to the peg 
                 #angle = findAngle(nearStrip, farStrip, res, dis)
                 #print("error is %d" % angle)
