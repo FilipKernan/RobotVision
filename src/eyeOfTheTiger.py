@@ -147,14 +147,15 @@ def capture():
                 x,y,w,h = cv2.boundingRect(nearStrip)
                 #prints the distance to the center between the two strips
                 #print(dis)
-                print(w)
-                print(h)
+                #print(w)
+                #print(h)
                 dis = -0.07925 * h
                 dis = dis + 32.994
-                print(dis)
+                #print(dis)
                 idealw = h/2.5
                 if(idealw != w):
                     g = w - idealw
+                    print(g)
                     ratio = g / h
                     angle = math.asin(ratio)
                     angle = math.degrees(angle)
