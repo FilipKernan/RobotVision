@@ -155,7 +155,9 @@ def capture():
                 idealw = h/2.5
                 if(idealw != w):
                     g = w - idealw
-                    print(g)
+                    ratio = g / h
+                    angle = math.asin(ratio)
+                    print(angle)
                 #Finds the angle to the peg 
                 #angle = findAngle(nearStrip, farStrip, res, dis)
                 #print("error is %d" % angle)
