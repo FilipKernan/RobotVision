@@ -147,11 +147,14 @@ def capture():
                 x,y,w,h = cv2.boundingRect(nearStrip)
                 #prints the distance to the center between the two strips
                 #print(dis)
-                #print(w)
+                print(w)
                 print(h)
                 dis = -0.07925 * h
                 dis = dis + 32.994
                 print(dis)
+                idealw = h/2.5
+                if(idealw != w):
+                    print("h/2.5 != w")
                 #Finds the angle to the peg 
                 #angle = findAngle(nearStrip, farStrip, res, dis)
                 #print("error is %d" % angle)
