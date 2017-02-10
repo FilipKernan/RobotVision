@@ -157,6 +157,7 @@ def capture():
                     g = w - idealw
                     ratio = g / h
                     angle = math.asin(ratio)
+                    angle = math.degrees(angle)
                     print(angle)
                 #Finds the angle to the peg 
                 #angle = findAngle(nearStrip, farStrip, res, dis)
