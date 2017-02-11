@@ -14,6 +14,8 @@ import math
 import os
 import time
 from numpy import log 
+from networktables import NetworkTable
+import dis
 logging.basicConfig(level=logging.DEBUG)
 
 
@@ -49,27 +51,9 @@ def findAngle(near, far, frame, dis):
            cv2.circle(frame, center, 5, (0,255,0),-1) 
            error = cx - FRAME_CY
            
-           #TODO: convert error to a distance so that I can use arcTan: really just need to know horizantal offset
-           #TODO: also calculte angle of attack based of of ratio of the two areas
-#            if error > 0:
-#                 isNegative = True
-#                 error = math.fabs(error)
-#            else:
-#                 isNegative = False
-#            angle = math.atan((error/FocalLength))
-#            if isNegative:
-#                 angle = -angle
-           '''
-           bsquared = math.pow(distance, 2) - math.pow(error, 2)
-           b = math.sqrt(bsquared)
-           angle = math.atan(error, b)
            
-           '''
            dis1 = error* -0.023982
            dis1 -= 0.97642
-           angle = math.asin(dis1/dis)
-           #angle = math.degrees(angle)
-           #if this doesn't work use the pythorian therom and use arcTan
            return dis1
        
 def calc_center(M):
@@ -121,7 +105,10 @@ def findTargets(contours):
 def capture():
     cap = cv2.VideoCapture(0)
     time.sleep(2)
-
+    NetworkTable.setIPAddress("10.54.59.2")
+    NetworkTable.setClientMode()
+    NetworkTable.initialize()
+    SmartDashboard = NetworkTable.getTable("SmartDashboard")
     while(True):
         # Capture frame-by-frame
         _, frame = cap.read()
@@ -152,21 +139,24 @@ def capture():
                 dis = -0.07925 * h
                 dis = dis + 32.994
                 #print(dis)
-                idealw = h/2.5
-                if(idealw != w):
-                    g = w - idealw
-                    print(g)
-                    ratio = g / h
-                    angle = math.asin(ratio)
+                expectedwidth = h/2.5
+                if(expectedwidth != w):
+                    ratio = w / expectedwidth
+                    angle = math.acos(ratio)
                     angle = math.degrees(angle)
-                    print(ratio)
+                    print(angle)
                 #Finds the angle to the peg 
-                #angle = findAngle(nearStrip, farStrip, res, dis)
+                hozAngle = findAngle(nearStrip, farStrip, res, dis)
                 #print("error is %d" % angle)
                 #draw the contours on the res display
                 
                 cv2.drawContours(res, [nearStrip], 0, (0,0,255), 5)
                 cv2.drawContours(res, [farStrip], 0, (255,0,0), 5)
+                SmartDashboard.putNumber('Distance', dis)
+                SmartDashboard.putNumber('horizontalDistance', hozAngle)
+                SmartDashboard.putNumber('rotationAngle', angle)
+                
+                
         except cv2.error:
             print("no area to operate on!!!!!!!!!!")
         except ValueError:
