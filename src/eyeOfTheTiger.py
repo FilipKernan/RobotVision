@@ -131,30 +131,46 @@ def capture():
                     area = area + cv2.contourArea(nearStrip) + cv2.contourArea(farStrip)
                 area = area /41
                 dis = findDistance(area)
-                x,y,w,h = cv2.boundingRect(nearStrip)
+                x1,y1,w1,h1 = cv2.boundingRect(nearStrip)
                 #prints the distance to the center between the two strips
                 #print(dis)
                 #print(w)
                 #print(h)
-                dis = -0.07925 * h
+                dis = -0.07925 * h1
                 dis = dis + 32.994
                 #print(dis)
-                expectedwidth = h/2.5
-                if(expectedwidth != w):
-                    ratio = w / expectedwidth
-                    angle = math.acos(ratio)
-                    angle = math.degrees(angle)
-                    print(angle)
-                #Finds the angle to the peg 
-                hozAngle = findAngle(nearStrip, farStrip, res, dis)
-                #print("error is %d" % angle)
-                #draw the contours on the res display
+                expectedwidth = h1/2.5
+                if(expectedwidth != w1):
+                    ratio1 = w1 / expectedwidth
+                    angle1 = math.acos(ratio)
+                    angle1 = math.degrees(angle)
+                    
                 
+                x2,y2,w2,h2 = cv2.boundingRect(farStrip)
+                #prints the distance to the center between the two strips
+                #print(dis)
+                #print(w)
+                #print(h)
+                dis1 = -0.07925 * h2
+                dis1 = dis1 + 32.994
+                #print(dis)
+                expectedwidth = h1/2.5
+                if(expectedwidth != w1):
+                    ratio2 = w1 / expectedwidth
+                    angle2 = math.acos(ratio)
+                    angle2 = math.degrees(angle)
+                    
+                
+                #Finds the angle to the peg 
+                hozDis = findAngle(nearStrip, farStrip, res, dis)
+                angle = (angle1 + angle2)/2
+                dis = (dis1+dis)/2
                 cv2.drawContours(res, [nearStrip], 0, (0,0,255), 5)
                 cv2.drawContours(res, [farStrip], 0, (255,0,0), 5)
                 SmartDashboard.putNumber('Distance', dis)
-                SmartDashboard.putNumber('horizontalDistance', hozAngle)
+                SmartDashboard.putNumber('horizontalDistance', hozDis)
                 SmartDashboard.putNumber('rotationAngle', angle)
+                SmartDashboard.putNumber('angle', math.atan(dis/hozDis))
                 
                 
         except cv2.error:
